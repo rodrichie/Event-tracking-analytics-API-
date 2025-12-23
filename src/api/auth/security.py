@@ -4,8 +4,14 @@ from jose import JWTError, jwt
 from passlib.context import CryptContext
 from decouple import config
 
-# JWT Settings
-SECRET_KEY = config("SECRET_KEY", default="your-secret-key-change-this-in-production")
+# JWT Settings - MUST be set in environment variables
+SECRET_KEY = config("SECRET_KEY")
+if not SECRET_KEY or SECRET_KEY == "":
+    raise ValueError(
+        "SECRET_KEY must be set in environment variables. "
+        "Generate one with: openssl rand -hex 32"
+    )
+
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = config("ACCESS_TOKEN_EXPIRE_MINUTES", default=30, cast=int)
 
