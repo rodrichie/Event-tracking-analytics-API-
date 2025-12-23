@@ -82,15 +82,41 @@ Features:
 
 ## Environment Variables
 
-Create a `.env.compose` file:
+**Important: Never commit your .env files with real credentials!**
+
+Copy the example file and fill in your values:
+
+```bash
+cp .env.example .env.compose
+```
+
+### Required Variables
 
 ```env
+# Database Configuration
 DATABASE_URL=postgresql+psycopg://time-user:time-pw@db_service:5432/timescaledb
-SECRET_KEY=your-secret-key-here-change-in-production
-ACCESS_TOKEN_EXPIRE_MINUTES=30
 DB_TIMEZONE=UTC
+
+# Server Configuration
 PORT=8002
+
+# Security - JWT Authentication (REQUIRED)
+# Generate a secure key with: openssl rand -hex 32
+SECRET_KEY=your-generated-secret-key-here
+ACCESS_TOKEN_EXPIRE_MINUTES=30
 ```
+
+### Generate Secure SECRET_KEY
+
+```bash
+# On Linux/Mac/Git Bash
+openssl rand -hex 32
+
+# On PowerShell
+[Convert]::ToBase64String((1..32 | ForEach-Object { Get-Random -Maximum 256 }))
+```
+
+**Note:** The application will fail to start if `SECRET_KEY` is not properly set.
 
 ## API Documentation
 
