@@ -5,6 +5,7 @@ from fastapi import FastAPI
 from api.db.session import init_db
 from api.events import router as event_router
 from api.auth import router as auth_router
+from api.analytics import router as analytics_router
 
 
 @asynccontextmanager
@@ -15,11 +16,13 @@ async def lifespan(app: FastAPI):
     # clean up
 
 
-app = FastAPI(lifespan=lifespan)
+app = FastAPI(lifespan=lifespan, title="Analytics API", version="1.0.0")
 app.include_router(event_router, prefix='/api/events', tags=['Events'])
 app.include_router(auth_router, prefix='/api/auth', tags=['Authentication'])
+app.include_router(analytics_router, prefix='/api/analytics', tags=['Analytics'])
 # /api/events
 # /api/auth
+# /api/analytics
 
 
 @app.get("/")
