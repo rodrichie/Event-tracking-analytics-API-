@@ -4,6 +4,7 @@ from typing import Union
 from fastapi import FastAPI
 from api.db.session import init_db
 from api.events import router as event_router
+from api.auth import router as auth_router
 
 
 @asynccontextmanager
@@ -15,8 +16,10 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(lifespan=lifespan)
-app.include_router(event_router, prefix='/api/events')
+app.include_router(event_router, prefix='/api/events', tags=['Events'])
+app.include_router(auth_router, prefix='/api/auth', tags=['Authentication'])
 # /api/events
+# /api/auth
 
 
 @app.get("/")
