@@ -12,3 +12,4 @@ psycopg[binary] # psycopg v3
 python-jose[cryptography]
 passlib[bcrypt]
 python-multipart
+websockets
