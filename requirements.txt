@@ -9,3 +9,6 @@ requests
 python-decouple
 psycopg[binary] # psycopg v3
 # psycopg2-binary
+python-jose[cryptography]
+passlib[bcrypt]
+python-multipart
