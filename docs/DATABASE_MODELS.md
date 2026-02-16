@@ -20,12 +20,12 @@ class EventModel(TimescaleModel, table=True):
 ```
 
 **Why TimescaleModel for Events:**
-- ✅ Automatic timestamp field (`time`)
-- ✅ Data partitioned by time (hypertables)
-- ✅ Optimized for time-range queries
-- ✅ Automatic data retention policies
-- ✅ Efficient aggregations with `time_bucket()`
-- ✅ Handles millions/billions of rows
+- Automatic timestamp field (`time`)
+- Data partitioned by time (hypertables)
+- Optimized for time-range queries
+- Automatic data retention policies
+- Efficient aggregations with `time_bucket()`
+- Handles millions/billions of rows
 
 **Characteristics:**
 - Continuous inserts (high write volume)
@@ -49,11 +49,11 @@ class User(SQLModel, table=True):
 ```
 
 **Why SQLModel for Users:**
-- ✅ Standard CRUD operations (Create, Read, Update, Delete)
-- ✅ Relationships with other tables
-- ✅ Unique constraints and indexes
-- ✅ Relatively small dataset
-- ✅ Frequent updates and modifications
+- Standard CRUD operations (Create, Read, Update, Delete)
+- Relationships with other tables
+- Unique constraints and indexes
+- Relatively small dataset
+- Frequent updates and modifications
 
 **Characteristics:**
 - Low to moderate write volume
@@ -117,16 +117,16 @@ Ask these questions:
 ### Examples
 
 **Use TimescaleModel:**
-- ✅ Events, logs, metrics
-- ✅ Sensor data, IoT readings
-- ✅ Financial transactions (time-series view)
-- ✅ Click streams, web analytics
+- Events, logs, metrics
+- Sensor data, IoT readings
+- Financial transactions (time-series view)
+- Click streams, web analytics
 
 **Use SQLModel:**
-- ✅ Users, accounts, profiles
-- ✅ Products, categories, tags
-- ✅ Configuration, settings
-- ✅ Relationships (friends, followers)
+- Users, accounts, profiles
+- Products, categories, tags
+- Configuration, settings
+- Relationships (friends, followers)
 
 ## Mixed Approach Example
 

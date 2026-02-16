@@ -182,7 +182,7 @@ async def get_dashboard():
 </head>
 <body>
     <div class="container">
-        <h1>📊 Real-Time Analytics Dashboard</h1>
+        <h1>Real-Time Analytics Dashboard</h1>
         
         <div id="status" class="status disconnected">
             <strong>Status:</strong> <span id="statusText">Connecting...</span>
@@ -208,7 +208,7 @@ async def get_dashboard():
         </div>
         
         <div class="events-section">
-            <h2>🔥 Live Events</h2>
+            <h2>Live Events</h2>
             <div id="eventsContainer"></div>
         </div>
     </div>
@@ -307,11 +307,11 @@ async def get_dashboard():
             container.innerHTML = events.map(event => `
                 <div class="event-item">
                     <div class="event-time">${new Date(event.time).toLocaleString()}</div>
-                    <div class="event-page">📄 ${event.page}</div>
+                    <div class="event-page">${event.page}</div>
                     <div class="event-details">
-                        🖥️ ${event.os || 'Unknown'} • 
-                        🕐 ${event.duration || 0}s • 
-                        🔗 ${event.referrer || 'Direct'}
+                        ${event.os || 'Unknown'} |
+                        ${event.duration || 0}s |
+                        ${event.referrer || 'Direct'}
                     </div>
                 </div>
             `).join('');

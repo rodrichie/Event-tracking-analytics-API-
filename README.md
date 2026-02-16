@@ -3,20 +3,20 @@
 **Own your data pipeline!**
 
 A comprehensive analytics API service built with Python, FastAPI, and TimescaleDB featuring:
-- 📊 Event tracking and analytics
-- 🔐 JWT authentication
-- 📈 Advanced analytics endpoints
-- 🔴 Real-time dashboard with WebSocket support
+- Event tracking and analytics
+- JWT authentication
+- Advanced analytics endpoints
+- Real-time dashboard with WebSocket support
 
 ## Features
 
-### 🎯 Core Features
+### Core Features
 - **Event Tracking**: Track page visits, user actions, and custom events
 - **Time-Series Storage**: Efficient storage using TimescaleDB with automatic partitioning
 - **User Authentication**: JWT-based authentication with bcrypt password hashing
 - **Real-Time Dashboard**: Live event monitoring via WebSocket
 
-### 📊 Analytics Endpoints
+### Analytics Endpoints
 - **Session Analytics**: Track user sessions, durations, and navigation paths
 - **Conversion Funnels**: Analyze user journey through multiple pages
 - **Retention Analysis**: Cohort-based user retention metrics
@@ -24,7 +24,7 @@ A comprehensive analytics API service built with Python, FastAPI, and TimescaleD
 - **Traffic Sources**: Referrer and source attribution
 - **Device Analytics**: Browser, OS, and device type breakdown
 
-### 🔐 Authentication
+### Authentication
 - User registration and login
 - JWT token-based authentication
 - Protected endpoints with role-based access
@@ -75,10 +75,10 @@ docker compose down -v
 Access the live dashboard at: `http://localhost:8002/api/realtime/`
 
 Features:
-- 🔴 Live event stream
-- 📊 Real-time metrics (total events, active sessions, page views/min)
-- 🎨 Beautiful, responsive UI
-- 📡 WebSocket-based updates
+- Live event stream
+- Real-time metrics (total events, active sessions, page views/min)
+- Beautiful, responsive UI
+- WebSocket-based updates
 
 ## Environment Variables
 
@@ -120,9 +120,12 @@ openssl rand -hex 32
 
 ## API Documentation
 
+The API provides interactive documentation via OpenAPI/Swagger with detailed endpoint descriptions, request/response schemas, and tag-based grouping across Events, Authentication, Analytics, and Real-time modules.
+
 Once running, visit:
-- **Swagger UI**: `http://localhost:8002/docs`
-- **ReDoc**: `http://localhost:8002/redoc`
+- **Swagger UI**: <http://localhost:8002/docs> -- Interactive API explorer with "Try it out" functionality
+- **ReDoc**: <http://localhost:8002/redoc> -- Clean, readable API reference
+- **OpenAPI JSON**: <http://localhost:8002/openapi.json> -- Machine-readable specification
 
 ## Example Usage
 

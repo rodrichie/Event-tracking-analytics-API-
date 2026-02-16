@@ -11,8 +11,8 @@ The following environment variables contain sensitive information and **MUST** b
 ### Best Practices
 
 1. **Never commit `.env` files** to version control
-   - ✅ `.env.example` is safe (contains no real values)
-   - ❌ `.env`, `.env.local`, `.env.compose` should never be committed
+   - `.env.example` is safe (contains no real values)
+   - `.env`, `.env.local`, `.env.compose` should never be committed
 
 2. **Generate Strong SECRET_KEY**
    ```bash
