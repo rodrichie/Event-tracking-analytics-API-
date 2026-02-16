@@ -1,27 +1,4 @@
 services:
-  app:
-    image: analytics-api:v1
-    build:
-      context: .
-      dockerfile: Dockerfile.web
-    # environment:
-    #   - PORT=8002
-    #   - DATABASE_URL=postgresql+psycopg://time-user:time-pw@db_service:5432/timescaledb
-    env_file:
-      - .env.compose
-    ports:
-      - "8002:8002"
-    command: uvicorn main:app --host 0.0.0.0 --port 8002 --reload
-    volumes:
-      - ./src:/code:rw
-    develop:
-      watch:
-        - action: rebuild
-          path: Dockerfile
-        - action: rebuild
-          path: requirements.txt
-        - action: rebuild
-          path: compose.yaml
   db_service:
     image: timescale/timescaledb:latest-pg17
     environment:
@@ -29,11 +6,55 @@ services:
       - POSTGRES_PASSWORD=time-pw
       - POSTGRES_DB=timescaledb
     ports:
-      - "5432:5432"
-    # expose:
-    #   - 5432
+      - "5444:5432"
     volumes:
       - timescaledb_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U time-user -d timescaledb"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    env_file:
+      - .env.compose
+    ports:
+      - "8002:8002"
+    depends_on:
+      db_service:
+        condition: service_healthy
+    command: uvicorn main:app --host 0.0.0.0 --port 8002 --reload
+    volumes:
+      - ./src:/code:rw
+
+  seeder:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    env_file:
+      - .env.compose
+    depends_on:
+      app:
+        condition: service_started
+    command: python /code/seed_data.py
+    volumes:
+      - ./src:/code:rw
+
+  dashboard:
+    build:
+      context: ./dashboard
+      dockerfile: Dockerfile
+    ports:
+      - "8512:8501"
+    environment:
+      - DATABASE_URL=postgresql+psycopg://time-user:time-pw@db_service:5432/timescaledb
+      - API_URL=http://app:8002
+    depends_on:
+      seeder:
+        condition: service_completed_successfully
 
 volumes:
   timescaledb_data:
